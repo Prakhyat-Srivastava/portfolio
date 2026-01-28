@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 15% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 263 70% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 15% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 15% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 263 70% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 263 70% 58%;
+    --radius: 0.75rem;
+    
+    --accent-purple: #8b5cf6;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-pink: #ec4899;
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a25;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg-primary text-white antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-bg-secondary/70 backdrop-blur-xl border border-white/10 rounded-xl;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-purple via-accent-blue to-accent-cyan;
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+                linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-cyan)) border-box;
+    border: 2px solid transparent;
+  }
+  
+  .glow-button {
+    @apply relative overflow-hidden;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .glow-button:hover {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+    transform: scale(1.02);
+  }
+  
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+  
+  .container-custom {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-in {
+    animation: animateIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
